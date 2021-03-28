@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 //import 'package:flutter_gen/gen_l10n/gallery_localizations.dart';
+import 'drawer.dart';
 import 'layout/adaptive.dart';
 
-const appBarDesktopHeight = 128.0;
+const appBarDesktopHeight = 56.0;
 
 class HomePage extends StatelessWidget {
   const HomePage();
@@ -54,16 +55,6 @@ class HomePage extends StatelessWidget {
                 isDesktop: true,
               ),
               body: body,
-              floatingActionButton: FloatingActionButton.extended(
-                heroTag: 'Extended Add',
-                onPressed: () {},
-                label: Text(
-                  'GenericButton',
-                  style: TextStyle(color: colorScheme.onSecondary),
-                ),
-                icon: Icon(Icons.add, color: colorScheme.onSecondary),
-                tooltip: 'TooltipAdd',
-              ),
             ),
           ),
         ],
@@ -73,15 +64,6 @@ class HomePage extends StatelessWidget {
         appBar: const AdaptiveAppBar(),
         body: body,
         drawer: ListDrawer(),
-        floatingActionButton: FloatingActionButton(
-          heroTag: 'Add',
-          onPressed: () {},
-          tooltip: 'pTooltipAdd',
-          child: Icon(
-            Icons.add,
-            color: Theme.of(context).colorScheme.onSecondary,
-          ),
-        ),
       );
     }
   }
@@ -105,22 +87,22 @@ class AdaptiveAppBar extends StatelessWidget implements PreferredSizeWidget {
     final themeData = Theme.of(context);
     return AppBar(
       automaticallyImplyLeading: !isDesktop,
-      title: isDesktop ? null : Text('GenericTitle'),
-      bottom: isDesktop
-          ? PreferredSize(
-              preferredSize: const Size.fromHeight(26),
-              child: Container(
-                alignment: AlignmentDirectional.centerStart,
-                margin: const EdgeInsetsDirectional.fromSTEB(72, 0, 0, 22),
-                child: Text(
-                  'pGenericTitle',
-                  style: themeData.textTheme.headline6.copyWith(
-                    color: themeData.colorScheme.onPrimary,
-                  ),
-                ),
-              ),
-            )
-          : null,
+      title: Text('Saman Arian Portfolio'),
+//      bottom: isDesktop
+//          ? PreferredSize(
+//              preferredSize: const Size.fromHeight(26),
+//              child: Container(
+//                alignment: AlignmentDirectional.centerStart,
+//                margin: const EdgeInsetsDirectional.fromSTEB(72, 0, 0, 22),
+//                child: Text(
+//                  'Sarian Portfolio',
+//                  style: themeData.textTheme.headline6.copyWith(
+//                    color: themeData.colorScheme.onPrimary,
+//                  ),
+//                ),
+//              ),
+//            )
+//          : null,
       actions: [
         IconButton(
           icon: const Icon(Icons.share),
@@ -138,56 +120,6 @@ class AdaptiveAppBar extends StatelessWidget implements PreferredSizeWidget {
           onPressed: () {},
         ),
       ],
-    );
-  }
-}
-
-class ListDrawer extends StatefulWidget {
-  @override
-  _ListDrawerState createState() => _ListDrawerState();
-}
-
-class _ListDrawerState extends State<ListDrawer> {
-  static final numItems = 9;
-
-  int selectedItem = 0;
-
-  @override
-  Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
-    return Drawer(
-      child: SafeArea(
-        child: ListView(
-          children: [
-            ListTile(
-              title: Text(
-                'Title',
-                style: textTheme.headline6,
-              ),
-              subtitle: Text(
-                'Subtitle',
-                style: textTheme.bodyText2,
-              ),
-            ),
-            const Divider(),
-            ...Iterable<int>.generate(numItems).toList().map((i) {
-              return ListTile(
-                enabled: true,
-                selected: i == selectedItem,
-                leading: const Icon(Icons.favorite),
-                title: Text(
-                  'DrawerItem(i + 1)',
-                ),
-                onTap: () {
-                  setState(() {
-                    selectedItem = i;
-                  });
-                },
-              );
-            }),
-          ],
-        ),
-      ),
     );
   }
 }
