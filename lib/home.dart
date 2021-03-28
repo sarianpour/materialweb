@@ -50,20 +50,26 @@ class HomePage extends StatelessWidget {
           //ListDrawer(),
           //const VerticalDivider(width: 1),
           Expanded(
-            child: Scaffold(
-              appBar: const AdaptiveAppBar(
-                isDesktop: true,
+            child: DefaultTabController(
+              length: 3,
+              child: Scaffold(
+                appBar: const AdaptiveAppBar(
+                  isDesktop: true,
+                ),
+                body: body,
               ),
-              body: body,
             ),
           ),
         ],
       );
     } else {
-      return Scaffold(
-        appBar: const AdaptiveAppBar(),
-        body: body,
-        drawer: ListDrawer(),
+      return DefaultTabController(
+        length: 3,
+        child: Scaffold(
+          appBar: const AdaptiveAppBar(),
+          body: body,
+          //drawer: ListDrawer(),
+        ),
       );
     }
   }
@@ -80,46 +86,87 @@ class AdaptiveAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Size get preferredSize => isDesktop
       ? const Size.fromHeight(appBarDesktopHeight)
-      : const Size.fromHeight(kToolbarHeight);
+      : const Size.fromHeight(kToolbarHeight * 2);
 
   @override
   Widget build(BuildContext context) {
     final themeData = Theme.of(context);
     return AppBar(
       automaticallyImplyLeading: !isDesktop,
-      title: Text('Saman Arian Portfolio'),
-//      bottom: isDesktop
-//          ? PreferredSize(
-//              preferredSize: const Size.fromHeight(26),
-//              child: Container(
-//                alignment: AlignmentDirectional.centerStart,
-//                margin: const EdgeInsetsDirectional.fromSTEB(72, 0, 0, 22),
-//                child: Text(
-//                  'Sarian Portfolio',
-//                  style: themeData.textTheme.headline6.copyWith(
-//                    color: themeData.colorScheme.onPrimary,
-//                  ),
-//                ),
-//              ),
-//            )
-//          : null,
-      actions: [
-        IconButton(
-          icon: const Icon(Icons.share),
-          tooltip: 'TooltipShare',
-          onPressed: () {},
-        ),
-        IconButton(
-          icon: const Icon(Icons.favorite),
-          tooltip: 'Favorite',
-          onPressed: () {},
-        ),
-        IconButton(
-          icon: const Icon(Icons.search),
-          tooltip: 'Search',
-          onPressed: () {},
-        ),
-      ],
+      title: isDesktop
+          ? Text(
+              'Saman Arian Portfolio',
+            )
+          : Center(
+              child: Text(
+                'Saman Arian Portfolio',
+              ),
+            ),
+      bottom: !isDesktop
+          ? TabBar(
+              tabs: [
+                Tab(
+                  child: Text(
+                    'home',
+                    style: themeData.textTheme.headline6.copyWith(
+                      color: themeData.colorScheme.onPrimary,
+                    ),
+                  ),
+                ),
+                Tab(
+                  child: Text(
+                    'projects',
+                    style: themeData.textTheme.headline6.copyWith(
+                      color: themeData.colorScheme.onPrimary,
+                    ),
+                  ),
+                ),
+                Tab(
+                  child: Text(
+                    'contact',
+                    style: themeData.textTheme.headline6.copyWith(
+                      color: themeData.colorScheme.onPrimary,
+                    ),
+                  ),
+                ),
+              ],
+            )
+          : null,
+      actions: isDesktop
+          ? [
+              Container(
+                width: 320,
+                child: TabBar(
+                  tabs: [
+                    Tab(
+                      child: Text(
+                        'home',
+                        style: themeData.textTheme.headline6.copyWith(
+                          color: themeData.colorScheme.onPrimary,
+                        ),
+                      ),
+                    ),
+                    Tab(
+                      child: Text(
+                        'projects',
+                        style: themeData.textTheme.headline6.copyWith(
+                          color: themeData.colorScheme.onPrimary,
+                        ),
+                      ),
+                    ),
+                    Tab(
+                      child: Text(
+                        'contact',
+                        style: themeData.textTheme.headline6.copyWith(
+                          color: themeData.colorScheme.onPrimary,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ]
+          : null,
     );
   }
 }

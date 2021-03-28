@@ -12,6 +12,7 @@ class _ListDrawerState extends State<ListDrawer> {
 
   @override
   Widget build(BuildContext context) {
+    final themeData = Theme.of(context);
     final textTheme = Theme.of(context).textTheme;
     return Drawer(
       child: SafeArea(
