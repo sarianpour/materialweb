@@ -26,9 +26,9 @@ class FrameLayout extends StatelessWidget {
             : const EdgeInsets.only(top: 16, left: 24, right: 24),
         child: TabBarView(
           children: [
-            SingleChildScrollView(child: ContactPage()),
             SingleChildScrollView(child: HomePage()),
             SingleChildScrollView(child: ProjectPage()),
+            SingleChildScrollView(child: ContactPage()),
           ],
         ),
       ),
