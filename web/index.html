@@ -94,5 +94,38 @@
       loadMainDartJs();
     }
   </script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('flutter-first-frame', function () {
+        navigator.serviceWorker.register('flutter_service_worker.js');
+      });
+    }
+  </script>
+  <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-storage.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-auth.js"></script>
+
+
+
+
+  <script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  var firebaseConfig = {
+    apiKey: "AIzaSyDM9FCsRlO7PD015DJVs09egpLT49opNCQ",
+    authDomain: "sarianportfolio.firebaseapp.com",
+    projectId: "sarianportfolio",
+    storageBucket: "sarianportfolio.appspot.com",
+    messagingSenderId: "62942432255",
+    appId: "1:62942432255:web:85323777a765c85935b5ca",
+    measurementId: "G-GP58E739N3"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+</script>
+  <script src="main.dart.js?version=2" type="application/javascript"></script>
 </body>
 </html>

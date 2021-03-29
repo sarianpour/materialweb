@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 class PlainText extends StatelessWidget {
   final String text;
-  PlainText({this.text});
+  final Color color;
+  PlainText({this.text, this.color});
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
@@ -12,7 +13,7 @@ class PlainText extends StatelessWidget {
     return Text(text,
         style: textTheme.headline6.copyWith(
           height: 1.5,
-          color: colorScheme.onPrimary,
+          color: (color == null) ? colorScheme.onPrimary : color,
         ));
   }
 }

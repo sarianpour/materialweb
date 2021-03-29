@@ -57,27 +57,30 @@ class HomePage extends StatelessWidget {
         ],
       );
     } else {
-      return Column(children: [
-        TitleText(
-          text: 'Hey, I’m Saman.',
-        ),
-        SizedBox(height: 48),
-        WidgetImageContainer(pictureUrl: pictureUrl),
-        SizedBox(height: 48),
-        PlainText(
-          text:
-              'My Name is Saman Arianpour,Flutter developer from Tehran in Iran. I create responsive application on android/ios/web platform. After studing software engineering in University of Guilan then following with projects in image processing and full-stack development. Download my Resume for more details!',
-        ),
-        SizedBox(height: 48),
-        WidgetRaisedButton(
-          onPressed: () {
-            DownloadFile df = new DownloadFile(url: cvUrl);
-            df.downloadFile();
-          },
-          text: 'Download Resume',
-        ),
-        SizedBox(height: 48),
-      ]);
+      return Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            TitleText(
+              text: 'Hey, I’m Saman.',
+            ),
+            SizedBox(height: 48),
+            WidgetImageContainer(pictureUrl: pictureUrl),
+            SizedBox(height: 48),
+            PlainText(
+              text:
+                  'My Name is Saman Arianpour,Flutter developer from Tehran in Iran. I create responsive application on android/ios/web platform. After studing software engineering in University of Guilan then following with projects in image processing and full-stack development. Download my Resume for more details!',
+            ),
+            SizedBox(height: 48),
+            WidgetRaisedButton(
+              onPressed: () {
+                DownloadFile df = new DownloadFile(url: cvUrl);
+                df.downloadFile();
+              },
+              text: 'Download Resume',
+            ),
+            SizedBox(height: 48),
+          ]);
     }
   }
 }
