@@ -3,6 +3,7 @@ import 'package:materialweb/layout/adaptive.dart';
 import 'package:materialweb/services/download_by_url.dart';
 import 'package:materialweb/widgets/plain_text.dart';
 import 'package:materialweb/widgets/raisedButton.dart';
+import 'package:materialweb/widgets/sized_box_widget.dart';
 import 'package:materialweb/widgets/title_text.dart';
 import 'dart:html' as html;
 
@@ -19,6 +20,20 @@ class HomePage extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
     final colorScheme = Theme.of(context).colorScheme;
     final isDesktop = isDisplayDesktop(context);
+    final Widget mTitleText = TitleText(
+      text: 'Hey, I’m Saman.',
+    );
+    final Widget mPlainText = PlainText(
+      text:
+          'My Name is Saman Arianpour,Flutter developer from Tehran in Iran. I create responsive application on android/ios/web platform. After studing software engineering in University of Guilan then following with projects in image processing and full-stack development. Download my Resume for more details!',
+    );
+    final Widget mWidgetRaisedButton = WidgetRaisedButton(
+      onPressed: () {
+        DownloadFile df = new DownloadFile(url: cvUrl);
+        df.downloadFile();
+      },
+      text: 'Download Resume',
+    );
     if (isDesktop) {
       return Column(
         children: [
@@ -29,23 +44,12 @@ class HomePage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      TitleText(
-                        text: 'Hey, I’m Saman.',
-                      ),
-                      SizedBox(height: 48),
-                      SizedBox(height: 48),
-                      PlainText(
-                        text:
-                            'My Name is Saman Arianpour,Flutter developer from Tehran in Iran. I create responsive application on android/ios/web platform. After studing software engineering in University of Guilan then following with projects in image processing and full-stack development. Download my Resume for more details!',
-                      ),
-                      SizedBox(height: 48),
-                      WidgetRaisedButton(
-                        onPressed: () {
-                          DownloadFile df = new DownloadFile(url: cvUrl);
-                          df.downloadFile();
-                        },
-                        text: 'Download Resume',
-                      ),
+                      mTitleText,
+                      SizedBoxWidget(),
+                      SizedBoxWidget(),
+                      mPlainText,
+                      SizedBoxWidget(),
+                      mWidgetRaisedButton,
                     ]),
               ),
               SizedBox(width: 48),
@@ -53,7 +57,10 @@ class HomePage extends StatelessWidget {
               WidgetImageContainer(pictureUrl: pictureUrl),
             ],
           ),
-          SizedBox(height: 48),
+          SizedBoxWidget(),
+          SizedBoxWidget(),
+          SizedBoxWidget(),
+          SizedBoxWidget(),
         ],
       );
     } else {
@@ -61,25 +68,14 @@ class HomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            TitleText(
-              text: 'Hey, I’m Saman.',
-            ),
-            SizedBox(height: 48),
+            mTitleText,
+            SizedBoxWidget(),
             WidgetImageContainer(pictureUrl: pictureUrl),
-            SizedBox(height: 48),
-            PlainText(
-              text:
-                  'My Name is Saman Arianpour,Flutter developer from Tehran in Iran. I create responsive application on android/ios/web platform. After studing software engineering in University of Guilan then following with projects in image processing and full-stack development. Download my Resume for more details!',
-            ),
-            SizedBox(height: 48),
-            WidgetRaisedButton(
-              onPressed: () {
-                DownloadFile df = new DownloadFile(url: cvUrl);
-                df.downloadFile();
-              },
-              text: 'Download Resume',
-            ),
-            SizedBox(height: 48),
+            SizedBoxWidget(),
+            mPlainText,
+            SizedBoxWidget(),
+            mWidgetRaisedButton,
+            SizedBoxWidget(),
           ]);
     }
   }

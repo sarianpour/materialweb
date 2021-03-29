@@ -43,9 +43,7 @@ class ContactPage extends StatelessWidget {
           height: 30,
         ),
         CommentWidget(),
-//        projectItems[0],
-//        projectItems[1],
-//        projectItems[2],
+        SizedBox(height: 48),
       ],
     );
   }

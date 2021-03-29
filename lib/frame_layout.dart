@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:materialweb/widgets/footer.dart';
 import 'package:materialweb/widgets/logo.dart';
+import 'package:materialweb/widgets/plain_text.dart';
 
 //import 'package:flutter_gen/gen_l10n/gallery_localizations.dart';
 import 'Pages/contact_page.dart';
@@ -20,17 +22,12 @@ class FrameLayout extends StatelessWidget {
     final colorScheme = Theme.of(context).colorScheme;
     final isDesktop = isDisplayDesktop(context);
     final body = SafeArea(
-      child: Padding(
-        padding: isDesktop
-            ? const EdgeInsets.only(top: 48, left: 72, right: 72)
-            : const EdgeInsets.only(top: 16, left: 24, right: 24),
-        child: TabBarView(
-          children: [
-            SingleChildScrollView(child: HomePage()),
-            SingleChildScrollView(child: ProjectPage()),
-            SingleChildScrollView(child: ContactPage()),
-          ],
-        ),
+      child: TabBarView(
+        children: [
+          PagescrollerFrame(child: HomePage()),
+          PagescrollerFrame(child: ProjectPage()),
+          PagescrollerFrame(child: ContactPage()),
+        ],
       ),
     );
 
@@ -84,29 +81,19 @@ class AdaptiveAppBar extends StatelessWidget implements PreferredSizeWidget {
           ? TabBar(
               tabs: [
                 Tab(
-                  child: Text(
-                    'home',
-                    style: themeData.textTheme.headline6.copyWith(
-                      color: themeData.colorScheme.onPrimary,
-                    ),
+                  child: PlainText(
+                    text: 'Home',
                   ),
                 ),
                 Tab(
-                  child: Text(
-                    'projects',
-                    style: themeData.textTheme.headline6.copyWith(
-                      color: themeData.colorScheme.onPrimary,
-                    ),
+                  child: PlainText(
+                    text: 'Projects',
                   ),
                 ),
                 Tab(
-                  child: Text(
-                    'contact',
-                    style: themeData.textTheme.headline6.copyWith(
-                      color: themeData.colorScheme.onPrimary,
-                    ),
-                  ),
-                ),
+                    child: PlainText(
+                  text: 'Contact',
+                )),
               ],
             )
           : null,
@@ -117,34 +104,44 @@ class AdaptiveAppBar extends StatelessWidget implements PreferredSizeWidget {
                 child: TabBar(
                   tabs: [
                     Tab(
-                      child: Text(
-                        'home',
-                        style: themeData.textTheme.headline6.copyWith(
-                          color: themeData.colorScheme.onPrimary,
-                        ),
+                      child: PlainText(
+                        text: 'Home',
                       ),
                     ),
                     Tab(
-                      child: Text(
-                        'projects',
-                        style: themeData.textTheme.headline6.copyWith(
-                          color: themeData.colorScheme.onPrimary,
-                        ),
+                      child: PlainText(
+                        text: 'Projects',
                       ),
                     ),
                     Tab(
-                      child: Text(
-                        'contact',
-                        style: themeData.textTheme.headline6.copyWith(
-                          color: themeData.colorScheme.onPrimary,
-                        ),
-                      ),
-                    ),
+                        child: PlainText(
+                      text: 'Contact',
+                    )),
                   ],
                 ),
               ),
             ]
           : null,
     );
+  }
+}
+
+class PagescrollerFrame extends StatelessWidget {
+  PagescrollerFrame({this.child});
+  final Widget child;
+  @override
+  Widget build(BuildContext context) {
+    final isDesktop = isDisplayDesktop(context);
+    return SingleChildScrollView(
+        child: Column(
+      children: [
+        Padding(
+            padding: isDesktop
+                ? const EdgeInsets.only(top: 48, left: 72, right: 72)
+                : const EdgeInsets.only(top: 16, left: 24, right: 24),
+            child: child),
+        Align(alignment: Alignment.bottomCenter, child: Footer())
+      ],
+    ));
   }
 }

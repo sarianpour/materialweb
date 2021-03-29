@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:materialweb/frame_layout.dart';
+import 'package:materialweb/routes.dart';
 
-//import 'package:gallery/data/gallery_options.dart';
-//import 'package:flutter_gen/gen_l10n/gallery_localizations.dart';
-
-import 'data/gallery_options.dart';
 import 'routes.dart' as routes;
 
 void main() {
@@ -18,25 +15,28 @@ class StarterApp extends StatelessWidget {
   const StarterApp();
 
   static const String defaultRoute = routes.defaultRoute;
+  static const String adminRoute = routes.adminRoute;
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       restorationScopeId: 'starter_app',
-      title: 'app',
+      title: 'SArian Portfolio',
       debugShowCheckedModeBanner: false,
       //localizationsDelegates: GalleryLocalizations.localizationsDelegates,
       //supportedLocales: GalleryLocalizations.supportedLocales,
       //locale: GalleryOptions.of(context).locale,
       initialRoute: StarterApp.defaultRoute,
       routes: {
-        StarterApp.defaultRoute: (context) => const _Home(),
+        StarterApp.defaultRoute: (context) => const _DefaultView(),
+        StarterApp.adminRoute: (context) => const _AdminView(),
       },
       theme: ThemeData(
         primaryColor: _primaryColor,
         highlightColor: Colors.transparent,
         scaffoldBackgroundColor: Color(0xFF22272E),
         buttonColor: Color(0xFF4B6CC1),
+
         accentColor: _primaryColor,
 
         colorScheme: const ColorScheme(
@@ -64,14 +64,20 @@ class StarterApp extends StatelessWidget {
   }
 }
 
-class _Home extends StatelessWidget {
-  const _Home();
+class _DefaultView extends StatelessWidget {
+  const _DefaultView();
 
   @override
   Widget build(BuildContext context) {
     return FrameLayout();
-//    return const ApplyTextOptions(
-//      child: HomePage(),
-//    );
+  }
+}
+
+class _AdminView extends StatelessWidget {
+  const _AdminView();
+
+  @override
+  Widget build(BuildContext context) {
+    return Text('admin view');
   }
 }

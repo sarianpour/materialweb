@@ -1,1 +1,2 @@
-const String defaultRoute = '/starter';
+const String defaultRoute = '/';
+const String adminRoute = '/admin';
