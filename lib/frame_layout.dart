@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:materialweb/widgets/logo.dart';
 
 //import 'package:flutter_gen/gen_l10n/gallery_localizations.dart';
+import 'Pages/contact_page.dart';
+import 'Pages/home_page.dart';
+import 'Pages/project_page.dart';
 import 'drawer.dart';
 import 'layout/adaptive.dart';
 
 const appBarDesktopHeight = 56.0;
 
-class HomePage extends StatelessWidget {
-  const HomePage();
+class FrameLayout extends StatelessWidget {
+  const FrameLayout();
 
   @override
   Widget build(BuildContext context) {
@@ -18,49 +22,27 @@ class HomePage extends StatelessWidget {
     final body = SafeArea(
       child: Padding(
         padding: isDesktop
-            ? const EdgeInsets.symmetric(horizontal: 72, vertical: 48)
-            : const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+            ? const EdgeInsets.only(top: 48, left: 72, right: 72)
+            : const EdgeInsets.only(top: 16, left: 24, right: 24),
+        child: TabBarView(
           children: [
-            Text(
-              'starter app',
-              style: textTheme.headline3.copyWith(
-                color: colorScheme.onSecondary,
-              ),
-            ),
-            const SizedBox(height: 10),
-            Text(
-              'Subtitle',
-              style: textTheme.subtitle1,
-            ),
-            const SizedBox(height: 48),
-            Text(
-              'GalleryLocalizations.of(context).starterAppGenericBody',
-              style: textTheme.bodyText1,
-            ),
+            SingleChildScrollView(child: HomePage()),
+            SingleChildScrollView(child: ProjectPage()),
+            SingleChildScrollView(child: ContactPage()),
           ],
         ),
       ),
     );
 
     if (isDesktop) {
-      return Row(
-        children: [
-          //ListDrawer(),
-          //const VerticalDivider(width: 1),
-          Expanded(
-            child: DefaultTabController(
-              length: 3,
-              child: Scaffold(
-                appBar: const AdaptiveAppBar(
-                  isDesktop: true,
-                ),
-                body: body,
-              ),
-            ),
+      return DefaultTabController(
+        length: 3,
+        child: Scaffold(
+          appBar: const AdaptiveAppBar(
+            isDesktop: true,
           ),
-        ],
+          body: body,
+        ),
       );
     } else {
       return DefaultTabController(
@@ -94,13 +76,9 @@ class AdaptiveAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       automaticallyImplyLeading: !isDesktop,
       title: isDesktop
-          ? Text(
-              'Saman Arian Portfolio',
-            )
+          ? Logo()
           : Center(
-              child: Text(
-                'Saman Arian Portfolio',
-              ),
+              child: Logo(),
             ),
       bottom: !isDesktop
           ? TabBar(
