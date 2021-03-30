@@ -36,6 +36,7 @@ class StarterApp extends StatelessWidget {
         highlightColor: Colors.transparent,
         scaffoldBackgroundColor: Color(0xFF22272E),
         buttonColor: Color(0xFF4B6CC1),
+        cardColor: Color(0xFF4B6CC1),
 
         accentColor: _primaryColor,
 
